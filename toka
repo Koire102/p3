@@ -1,0 +1,60 @@
+float r = random(50, 255);
+float g = random(50, 255);
+float b = random(50, 255);
+float x = 300;
+float y = 700;
+float y2 = 0;
+float y4 = 400;
+float score = 0;
+
+void setup(){
+size(600, 800);
+}
+
+void draw(){
+  y += 2;
+  y2 += 3;
+  y4 += 3;
+  background(r, g, b);
+  ellipse(x, y, 50, 50);
+  rect(0, y2, 200, 50);
+  rect(400, y2, 200, 50);
+  
+  rect(200, y4, 200, 50);
+  
+  if(y2 >= 800){
+    y2 = 0;
+  }
+  if(y4 >= 800){
+    y4 = 0;
+  }
+  
+  if(y <= y2+5 && y >= y2){
+    score += 1;
+  }
+  textSize(100);
+  text(score, 120, 100); 
+  
+  if(x >= 550 || x <= 50){
+    frameRate(0);
+  }
+  
+}
+
+void keyPressed() {
+}
+
+void mouseMoved() {
+  if (y > mouseY){
+    y -= 5;
+  } 
+  if (y < mouseY){
+    y += 5;
+  } 
+  if (x > mouseX){
+    x -= 7;
+  } 
+  if (x < mouseX){
+    x += 7;
+  } 
+}

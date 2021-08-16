@@ -1,0 +1,75 @@
+float cr = random(50, 255);
+float cg = random(50, 255);
+float cb = random(50, 255);
+float x = 250;
+float y = 250;
+float x2 = random(25, 475);
+float y2 = random(25, 475);
+float x3 = random(25, 475);
+float y3 = random(25, 475);
+float dead = 0;
+float score = 0;
+
+void setup() {
+  size(500, 500);
+}
+
+void draw() {
+  background(160, 80, 160);
+  fill(cr, cg, cb);
+  ellipse(x, y, 50, 50);
+  fill(255, 0, 0);
+  ellipse(x2, y2, 50, 50);
+  fill(0, 100, 255);
+  ellipse(x3, y3, 20, 20);
+
+  if (x <= 25 || x >= 475 || y <= 25 || y >= 475) {
+    dead = 1;
+  }
+  if (dist(x, y, x2, y2) <= 50) {
+    dead = 1;
+  }
+  if (dist(x, y, x3, y3) <= 20) {
+    x3 = random(25, 475);
+    y3 = random(25, 475);
+    score += 1;
+  }
+  if(dead == 1){
+    textSize(64);
+    fill(255, 10, 10);
+    text("Dead", 180, 250); 
+    textSize(32);
+    fill(255);
+    text("Score:", 160, 280); 
+    text(score, 250, 280); 
+    frameRate(0);
+  }
+  
+  if(x2 < x){
+    x2 += 1;
+  }
+  if(x2 > x){
+    x2 -= 1;
+  }
+  if(y2 < y){
+    y2 += 1;
+  }
+  if(y2 > y){
+    y2 -= 1;
+  }
+}
+
+void keyPressed() {
+  if (key == 'w' || key == 'W') {
+    y -= 13;
+  }
+  if (key == 's' || key == 'S') {
+    y += 13;
+  }
+  if (key == 'd' || key == 'D') {
+    x += 13;
+  }
+  if (key == 'a' || key == 'A') {
+    x -= 13;
+  }
+}
